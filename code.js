@@ -15,7 +15,8 @@ function createAsteroid(x, y, radius) {
     render() {
       this.context.strokeStyle = "red";
       this.context.beginPath();
-      this.context.arc(0, 0, this.radius, 0, Math.PI * 2);
+      this.context.rect(0, 0, 30, 40);
+      /* this.context.arc(0, 0, this.radius, 0, Math.PI * 2); */
       this.context.stroke();
     },
   });
