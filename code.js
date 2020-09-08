@@ -15,8 +15,7 @@ function createAsteroid(x, y, radius) {
     render() {
       this.context.strokeStyle = "red";
       this.context.beginPath();
-      this.context.rect(0, 0, 30, 40);
-      /* this.context.arc(0, 0, this.radius, 0, Math.PI * 2); */
+      this.context.arc(0, 0, this.radius, 0, Math.PI * 2);
       this.context.stroke();
     },
   });
@@ -74,7 +73,7 @@ let ship = kontra.Sprite({
     }
 
     this.dt += 1 / 60;
-    if (kontra.keyPressed("space") && this.dt > 0.25) {
+    if (kontra.keyPressed("space") && this.dt > 0.10) {
       this.dt = 0;
       let bullet = kontra.Sprite({
         color: "white",
@@ -85,13 +84,30 @@ let ship = kontra.Sprite({
         dx: this.dx + cos * 5,
         dy: this.dy + sin * 5,
 
-        ttl: 100,
+        ttl: 80,
 
         radius: 5,
         width: 5,
         height: 5,
       });
+      let bullet2 = kontra.Sprite({
+        color: "white",
+
+        x: this.x + cos * 20,
+        y: this.y + sin * 20,
+
+        dx: this.dx - cos * 5,
+        dy: this.dy - sin * 5,
+
+        ttl: 80,
+
+        radius: 5,
+        width: 5,
+        height: 5,
+      });
+
       sprites.push(bullet);
+      sprites.push(bullet2);
     }
   },
 });
