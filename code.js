@@ -6,9 +6,12 @@ let level = 0;
 
 function getRandomLetter() {
   let ran = Math.random() * (4 - 0) + 0;
+
   if (ran > 0 && ran < 2) {
+    console.log("4");
     return "4";
   } else {
+    console.log("0");
     return "0";
   }
 }
@@ -22,7 +25,7 @@ function getRandomColor() {
   return color;
 }
 
-function createAsteroid(x, y, radius) {
+function createAsteroid(x, y, radius, text) {
   let asteroid = kontra.Sprite({
     type: "asteroid",
     x,
@@ -30,6 +33,7 @@ function createAsteroid(x, y, radius) {
     dx: Math.random() * 5 - 2,
     dy: Math.random() * 5 - 2,
     radius,
+    text,
     render() {
       this.context.strokeStyle = "rgba(13, 13, 13, 1)";
       this.context.beginPath();
@@ -38,11 +42,7 @@ function createAsteroid(x, y, radius) {
       this.context.textAlign = "center";
       this.context.strokeStyle = getRandomColor();
       this.context.font = radius + "px Arial";
-      if (radius < 15) {
-        this.context.strokeText(getRandomLetter(), 0, 5);
-      } else {
-        this.context.strokeText("404", 0, 5);
-      }
+      this.context.strokeText(this.text, 0, 5);
     },
   });
   sprites.push(asteroid);
@@ -63,6 +63,7 @@ function asteroidCreator(top) {
       getRandomArbitrary(20, 900),
       getRandomArbitrary(50, 100) + addPoints,
       getRandomArbitrary(30, 50),
+      "404",
     );
   }
 }
@@ -182,9 +183,23 @@ function checkCollision(sprites) {
             asteroid.ttl = 0;
             sprite.ttl = 0;
 
-            if (asteroid.radius > 20) {
+            if (asteroid.radius > 30) {
               for (let i = 0; i < 2; i++) {
-                createAsteroid(asteroid.x, asteroid.y, asteroid.radius / 1.5);
+                createAsteroid(
+                  asteroid.x,
+                  asteroid.y,
+                  asteroid.radius / 1.5,
+                  "404",
+                );
+              }
+            } else if (asteroid.radius > 20 && asteroid.radius <= 30) {
+              for (let i = 0; i < 2; i++) {
+                createAsteroid(
+                  asteroid.x,
+                  asteroid.y,
+                  asteroid.radius / 1.5,
+                  getRandomLetter(),
+                );
               }
             }
 
