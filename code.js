@@ -2,16 +2,15 @@ let { canvas, context, text } = kontra.init();
 
 let sprites = [];
 
-let level = 0;
+let level = 1;
+let points = 0;
 
 function getRandomLetter() {
   let ran = Math.random() * (4 - 0) + 0;
 
   if (ran > 0 && ran < 2) {
-    console.log("4");
     return "4";
   } else {
-    console.log("0");
     return "0";
   }
 }
@@ -97,7 +96,7 @@ function createShip() {
 
       const cos = Math.cos(this.rotation);
       const sin = Math.sin(this.rotation);
-      if (kontra.keyPressed("up")) {
+      if (kontra.keyPressed("up") || kontra.keyPressed("w")) {
         this.ddx = cos * 0.05;
         this.ddy = sin * 0.05;
       } else {
@@ -154,6 +153,8 @@ function createShip() {
 
 createShip();
 
+let top_ribbon = 300;
+
 function checkBorder(sprite) {
   if (sprite.x < -sprite.radius) {
     sprite.x = canvas.width + sprite.radius;
@@ -184,6 +185,7 @@ function checkCollision(sprites) {
             sprite.ttl = 0;
 
             if (asteroid.radius > 30) {
+              points += 20;
               for (let i = 0; i < 2; i++) {
                 createAsteroid(
                   asteroid.x,
@@ -193,6 +195,7 @@ function checkCollision(sprites) {
                 );
               }
             } else if (asteroid.radius > 20 && asteroid.radius <= 30) {
+              points += 50;
               for (let i = 0; i < 2; i++) {
                 createAsteroid(
                   asteroid.x,
@@ -223,6 +226,8 @@ function checkLevel(sprites) {
     level++;
 
     asteroidCreator(2 * level);
+    console.log(points);
+    console.log(level);
   }
 }
 
