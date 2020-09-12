@@ -5,6 +5,48 @@ let sprites = [];
 let level = 1;
 let points = 0;
 
+class ArcadeAudio {
+  constructor() {
+    this.sounds = {};
+  }
+  add(key, count, settings) {
+    this.sounds[key] = [];
+    settings.forEach(function (elem, index) {
+      this.sounds[key].push({
+        tick: 0,
+        count: count,
+        pool: []
+      });
+      for (var i = 0; i < count; i++) {
+        var audio = new Audio();
+        audio.src = jsfxr(elem);
+        this.sounds[key][index].pool.push(audio);
+      }
+    }, this);
+  }
+  play(key) {
+    var sound = this.sounds[key];
+    var soundData = sound.length > 1 ? sound[Math.floor(Math.random() * sound.length)] : sound[0];
+    console.debug(sound.length);
+    soundData.pool[soundData.tick].play();
+    soundData.tick < soundData.count - 1 ? soundData.tick++ : soundData.tick = 0;
+  }
+}
+
+var aa = new ArcadeAudio();
+
+aa.add( 'powerup', 10,
+  [
+    [2,,0.087,,0.1125,0.532,0.3555,-0.219,,,,,,0.4403,0.0734,,,,1,,,,,0.5] 
+  ]
+);
+
+aa.add( 'death', 10,
+  [
+    [3,,0.373,0.546,0.425,0.0901,,,,,,0.4014,0.6329,,,,-0.1483,-0.0334,1,0.595,,,,0.5]
+  ]
+);
+
 function getRandomLetter() {
   let ran = Math.random() * (4 - 0) + 0;
 
@@ -110,8 +152,9 @@ function createShip() {
       }
 
       this.dt += 1 / 60;
-      if (kontra.keyPressed("space") && this.dt > 0.10) {
+      if (kontra.keyPressed("space") && this.dt > 0.10) { 
         this.dt = 0;
+          aa.play('powerup');
         let bullet = kontra.Sprite({
           color: "cyan ",
 
@@ -145,10 +188,12 @@ function createShip() {
 
         sprites.push(bullet);
         sprites.push(bullet2);
+       
       }
     },
   });
   sprites.push(ship);
+   
 }
 
 createShip();
@@ -204,8 +249,8 @@ function checkCollision(sprites) {
                   getRandomLetter(),
                 );
               }
-            }
-
+             }
+            aa.play("death")
             break;
           }
         }
