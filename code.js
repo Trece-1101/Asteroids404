@@ -60,10 +60,6 @@ aa.add( 'damage', 3,
   ]
 );
 
-aa.play( 'powerup' );
-aa.play( 'damage' );
-aa.play( 'laser' );
-
 let menu = document.getElementById('game_over');
 let menuContext = menu.getContext("2d");
 
