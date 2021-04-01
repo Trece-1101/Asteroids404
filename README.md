@@ -1,7 +1,17 @@
 # Asteroids404
+![Logo]()
+***
+Asteroids404 nacio como un tributo al juego clasico de arcade "Asteroids" para ser presentado en la gamejam js13kgames donde la tematica era "error 404" y la limitante es que el proyecto no debe superar los 13Kb de tamaño.
+***
+***Lenguaje:*** JS / HTML / CSS
 
-Asteroids404 was born as a tribute to the classic game asteroids a job for a university practitioner within the framework of the js13kgames event where the theme to be discussed this year is about 404.
+***IDE:*** VS Code
 
-How to play?
+***Plataforma:*** PC (navegador web)
 
-W, A, D OR UP, LEFT, RIGHT ARROW to move, SPACE for shoot.
+***Genero:*** Shoot ‘em up
+***
+### ***Preview***
+[![Gameplay Asteroids404](https://img.youtube.com/vi//0.jpg)]()
+***
+### ***Imagenes***
