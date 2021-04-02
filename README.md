@@ -12,6 +12,6 @@ Asteroids404 nacio como un tributo al juego clasico de arcade "Asteroids" para s
 ***Genero:*** Shoot ‘em up
 ***
 ### ***Preview***
-[![Gameplay Asteroids404](https://img.youtube.com/vi//0.jpg)]()
+[![Gameplay Asteroids404](https://img.youtube.com/vi/cuzYxknuDGA/0.jpg)](https://www.youtube.com/watch?v=cuzYxknuDGA)
 ***
 ### ***Imagenes***
